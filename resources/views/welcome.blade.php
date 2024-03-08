@@ -492,7 +492,7 @@
                             @if (Route::has('login'))
                                 <div class="text-center px-4">
                                     @auth
-                                        <a href="{{ url('chatify') }}"><button class="btn login-custom-color btn-lg">
+                                        <a href="{{ url('chat') }}"><button class="btn login-custom-color btn-lg">
                                                 Lobby
                                             </button></a>
                                     @else
