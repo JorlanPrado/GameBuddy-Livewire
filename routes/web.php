@@ -7,6 +7,7 @@ use App\Http\Livewire\Chat\Index;
 use App\Http\Livewire\Users;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use EasyPanel\Http\Livewire\Admins\Single;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/banned', function () {
+    return view('banned');
+})->name('banned');
 
+Route::get('users/status/{user_id}/{status_code}', [ProfileController::class, 'updateStatus']);
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('users/status/{user_id}/{status_code}', [ProfileController::class, 'updateStatus']);
 });
 
 //edit interest

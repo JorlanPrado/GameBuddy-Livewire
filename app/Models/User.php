@@ -21,8 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        'isAdmin',
+        'is_banned'
+        
+
+
         'gender',
         'age',
+
     ];
 
     /**
@@ -58,6 +65,11 @@ class User extends Authenticatable
     public function receivesBroadcastNotificationsOn(): string
     {
         return 'users.'.$this->id;
+
+    }
+    public function isAdmin()
+    {
+        return $this->isAdmin;
     }
 
     public function interests(){
