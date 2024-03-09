@@ -32,12 +32,12 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'name' => ['required', 'string', 'min:5', 'max:20', 'unique:'.User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'max:20', Rules\Password::defaults()],
             'termsCheckbox' => 'required|accepted',
             'gender' => ['required', 'string', 'in:male,female,other'],
-            'age' => 'required|integer|min:18|max:99',
+            'age' => 'required|integer|min:18|max:40',
         ]);
 
         $user = User::create([
@@ -53,5 +53,14 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    protected function incrementRegistrationCount(): void
+    {
+        $registrationCount = Cache::get('registration_count', 0);
+
+        $registrationCount++;
+
+        Cache::put('registration_count', $registrationCount);
     }
 }

@@ -80,5 +80,7 @@
     "IsAdmin": "IsAdmin",
     "User": "User",
     "Users": "Users",
-    "Is_banned": "Is_banned"
+    "Is_banned": "Is_banned",
+    "Gender": "Gender",
+    "Age": "Age"
 }

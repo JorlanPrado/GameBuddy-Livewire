@@ -61,3 +61,8 @@ Route::get('/random-user', function () {
     return response()->json($randomUser);
 });
 
+Route::get('/registration-count', function () {
+    $registrationCount = User::count(); 
+
+    return response()->json(['registrationCount' => $registrationCount]);
+});

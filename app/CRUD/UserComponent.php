@@ -14,7 +14,6 @@ class UserComponent implements CRUDComponent
     public $Unban = true;
     public $update = true;
 
-
     // If you will set it true it will automatically
     // add `user_id` to create and update action
     public $with_user_id = true;
@@ -27,13 +26,13 @@ class UserComponent implements CRUDComponent
     // which kind of data should be showed in list page
     public function fields()
     {
-        return ['name', 'email', 'password', 'status', 'isAdmin', 'is_banned'];
+        return ['name', 'email', 'password', 'gender', 'age', 'isAdmin', 'is_banned'];
     }
 
     // Searchable fields, if you dont want search feature, remove it
     public function searchable()
     {
-        return ['name', 'email', 'password', 'status', 'isAdmin', 'is_banned'];
+        return ['name', 'email', 'password', 'gender', 'age', 'isAdmin', 'is_banned'];
     }
 
     // Write every fields in your db which you want to have a input

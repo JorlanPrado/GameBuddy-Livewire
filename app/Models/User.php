@@ -21,15 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
-        'isAdmin',
-        'is_banned'
-        
-
-
         'gender',
         'age',
-
+        'isAdmin',
+        'is_banned'
     ];
 
     /**

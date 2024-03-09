@@ -12,7 +12,7 @@
                     </ul>
 
                     <div class="row justify-content-between mt-4 mb-4">
-                        @if(getCrudConfig('User')->create && hasPermission(getRouteName().'.user.create', 1, 1))
+                        @if(getCrudConfig('User')->create && hasPermission(getRouteName().'.user.create', 0, 0))
                         <div class="col-md-4 right-0">
                             <a href="@route(getRouteName().'.user.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('User') ]) }}</a>
                         </div>
@@ -41,11 +41,10 @@
                             <th scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('email')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'email') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'email') fa-sort-amount-up ml-2 @endif'></i> {{ __('Email') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('password')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'password') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'password') fa-sort-amount-up ml-2 @endif'></i> {{ __('Password') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('status')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'status') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'status') fa-sort-amount-up ml-2 @endif'></i> {{ __('Status') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('isAdmin')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'isAdmin') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'isAdmin') fa-sort-amount-up ml-2 @endif'></i> {{ __('IsAdmin') }} </th>
                             <th scope="col" style='cursor: pointer' wire:click="sort('is_banned')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'is_banned') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'is_banned') fa-sort-amount-up ml-2 @endif'></i> {{ __('Is_banned') }} </th>
                             
-                            @if(getCrudConfig('User')->Ban or getCrudConfig('User')->update)
+                            @if(getCrudConfig('User')->Ban or getCrudConfig('User')->update or getCrudConfig('User')->Unban)
                                 <th scope="col">{{ __('Action') }}</th>
                             @endif
                         </tr>
