@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ChatController;
+use App\Http\Controllers\GroupChatController;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\Index;
 use App\Http\Livewire\Users;
@@ -26,10 +27,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/conversations/{userId}/message', [ChatController::class, 'sendMessage']);
     Route::get('/conversations/{conversationId}', [ChatController::class, 'getConversation']);
-    Route::get('/conversations/{conversationId}/messages', [ChatController::class,'index']);
+    Route::get('/conversations/{conversationId}/messages', [ChatController::class, 'index']);
     Route::post('/conversations/{conversationId}/messages', [ChatController::class, 'store']);
     Route::delete('/conversations/{conversationId}', [ChatController::class, 'deleteConversation']);
 });
+
+Route::group(['prefix' => 'group-chats'], function () {
+    Route::post('/', 'GroupChatController@store'); // Create a new group chat
+    Route::get('/', 'GroupChatController@index'); // Get all group chats
+    Route::get('/{id}', 'GroupChatController@show'); // Get a specific group chat
+    Route::put('/{id}', 'GroupChatController@update'); // Update a group chat
+    Route::delete('/{id}', 'GroupChatController@destroy'); // Delete a group chat
+
+    Route::post('/{groupId}/messages', 'MessageController@store'); // Add a message to a group chat
+    Route::get('/{groupId}/messages', 'MessageController@index'); // Get all messages in a group chat
+});
+
+Route::get('/group-chats/lobbies', 'GroupChatController@getLobbyChats');
 
 Route::post('/register', [ChatController::class, 'register']);
 Route::post('/login', [ChatController::class, 'login']);

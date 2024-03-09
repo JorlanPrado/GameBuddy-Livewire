@@ -36,4 +36,9 @@ class Message extends Model
 
          return $this->read_at != null;
     }
+
+    public function groupChat()
+    {
+        return $this->belongsTo(GroupChat::class);
+    }
 }
