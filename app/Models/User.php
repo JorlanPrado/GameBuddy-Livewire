@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'age',
     ];
 
     /**
@@ -58,4 +60,7 @@ class User extends Authenticatable
         return 'users.'.$this->id;
     }
 
+    public function interests(){
+        return $this->belongsToMany(Interest::class)->withTimestamps();
+    }
 }

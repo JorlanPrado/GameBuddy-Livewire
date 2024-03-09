@@ -7,7 +7,7 @@
             <div class="card rounded-3 text-black">
                 <div class="card-body p-md-5 mx-md-4">
                     <div class="text-center mb-5">
-                        <img src="/img/logo.png" style="width: 195px;" alt="logo" class="mx-auto">
+                        <img src="/img/logo.png" style="width: 100px;" alt="logo" class="mx-auto">
                     </div>
 
                     <form method="POST" action="{{ route('register') }}">
@@ -44,8 +44,50 @@
 
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
+                        
+                        
 
-                        <div class="form-check mb-4">
+                        <!--gender-->
+                        <div class="col-md-6 mb-4 d-flex flex-column">
+                            <h6 class="mb-2 pb-1">Gender: </h6>
+                          
+                            <div class="d-flex">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" required/>
+                                     <label class="form-check-label" for="maleGender">Male</label>
+                                     <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                                </div>
+                          
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female" required/>
+                                <label class="form-check-label" for="femaleGender">Female</label>
+                                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                              </div>
+                          
+                              <div class="form-check form-check-inline ">
+                                <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" required/>
+                                <label class="form-check-label" for="otherGender">Other</label>
+                                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+                                
+                              </div>
+                            </div>
+                          
+                        </div>
+
+                          <!--age-->
+                        <div class="form-outline mb-4">
+                            <h6 class="mb-2 pb-1">Age:</h6>
+                            <div class="form-outline" data-mdb-input-init>
+                                <input type="number" id="age" name="age" class="form-control" min="0" max="99" pattern="[0-9]{1,2}" required/>
+                                <label class="form-label" for="age"></label>
+                                <x-input-error :messages="$errors->get('age')" class="mt-2" />
+                            </div>
+                        </div>
+
+        
+
+                        
+                        <div class="form-check mb-4" >
                             <input class="form-check-input" type="checkbox" id="termsCheckbox" name="termsCheckbox" required>
                             <label class="form-check-label" for="termsCheckbox">
                                 I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" style="color:#4158D0">Terms and Conditions</a>
