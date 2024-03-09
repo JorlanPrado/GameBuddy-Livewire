@@ -21,9 +21,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
         'isAdmin',
         'is_banned'
         
+
+
+        'gender',
+        'age',
 
     ];
 
@@ -67,4 +72,7 @@ class User extends Authenticatable
         return $this->isAdmin;
     }
 
+    public function interests(){
+        return $this->belongsToMany(Interest::class)->withTimestamps();
+    }
 }

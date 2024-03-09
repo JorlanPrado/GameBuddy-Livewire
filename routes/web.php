@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\interestController;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\Index;
 use App\Http\Livewire\Users;
@@ -38,7 +39,11 @@ Route::middleware('auth')->group(function () {
     Route::get('users/status/{user_id}/{status_code}', [ProfileController::class, 'updateStatus']);
 });
 
+//edit interest
+Route::put('update-interests/{userId}', [interestController::class, 'updateInterests'])->name('interest.edit');
+
 require __DIR__.'/auth.php';
+
 
 
 Route::middleware('auth')->group(function (){

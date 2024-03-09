@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\MessageRead;
 use App\Notifications\MessageSent;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 
 class ChatController extends Controller
