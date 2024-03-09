@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97a70202e263be027707c65b43a317ec",
+    "content-hash": "4e9605807b6316de585928d47d1c0d57",
     "packages": [
         {
             "name": "brick/math",
@@ -1128,6 +1128,107 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "iya30n/dynamic-acl",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iya30n/dynamic-acl.git",
+                "reference": "72002fba09c3dd77269b9844371c70bbe8daa64a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iya30n/dynamic-acl/zipball/72002fba09c3dd77269b9844371c70bbe8daa64a",
+                "reference": "72002fba09c3dd77269b9844371c70bbe8daa64a",
+                "shasum": ""
+            },
+            "require": {
+                "javoscript/laravel-macroable-models": "^1.0",
+                "laravel/framework": "^8.0|^9.0|^10.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.3",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Iya30n\\DynamicAcl\\Providers\\DynamicAclServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Iya30n\\DynamicAcl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "iya30n",
+                    "email": "varmeziyaryasin@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/iya30n/dynamic-acl/issues",
+                "source": "https://github.com/iya30n/dynamic-acl/tree/1.1.0"
+            },
+            "time": "2023-06-21T09:14:49+00:00"
+        },
+        {
+            "name": "javoscript/laravel-macroable-models",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/javoscript/laravel-macroable-models.git",
+                "reference": "b60da8c1d1c1731ec8851059c767c69d187c8cd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/javoscript/laravel-macroable-models/zipball/b60da8c1d1c1731ec8851059c767c69d187c8cd7",
+                "reference": "b60da8c1d1c1731ec8851059c767c69d187c8cd7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8",
+                "phpunit/phpunit": "^10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Javoscript\\MacroableModels\\MacroableModelsServiceProvider"
+                    ],
+                    "aliases": {
+                        "MacroableModels": "Javoscript\\MacroableModels\\Facades\\MacroableModels"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Javoscript\\MacroableModels\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Javier Ugarte",
+                    "email": "javougarte@gmail.com"
+                }
+            ],
+            "description": "A package for adding methods to Laravel models on the fly",
+            "support": {
+                "issues": "https://github.com/javoscript/laravel-macroable-models/issues",
+                "source": "https://github.com/javoscript/laravel-macroable-models/tree/1.0.6"
+            },
+            "time": "2023-05-23T15:04:41+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3622,6 +3723,126 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "rezaamini-ir/laravel-easyblade",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rezaamini-ir/laravel-easyblade.git",
+                "reference": "acfce4ab458854f72bd069efd9f3a5f7b85da5cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rezaamini-ir/laravel-easyblade/zipball/acfce4ab458854f72bd069efd9f3a5f7b85da5cd",
+                "reference": "acfce4ab458854f72bd069efd9f3a5f7b85da5cd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "laravel/framework": "^8.0|^9.0|^10.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EasyBlade\\EasyBladeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EasyBlade\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Reza Amini",
+                    "email": "rezaaminiroyal@gmail.com"
+                }
+            ],
+            "description": "Create a easier & readable Blade view with EasyBlade",
+            "support": {
+                "issues": "https://github.com/rezaamini-ir/laravel-easyblade/issues",
+                "source": "https://github.com/rezaamini-ir/laravel-easyblade/tree/1.0"
+            },
+            "time": "2023-06-21T09:27:17+00:00"
+        },
+        {
+            "name": "rezaamini-ir/laravel-easypanel",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rezaamini-ir/laravel-easypanel.git",
+                "reference": "7e131c0548dd0dccefbf9f4569aeb38cd5efddce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rezaamini-ir/laravel-easypanel/zipball/7e131c0548dd0dccefbf9f4569aeb38cd5efddce",
+                "reference": "7e131c0548dd0dccefbf9f4569aeb38cd5efddce",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "iya30n/dynamic-acl": "^1.0",
+                "laravel/framework": "^8.0|^9.0|^10.0",
+                "livewire/livewire": "^1.0|^2.3",
+                "php": "^7.3|^8.0",
+                "rezaamini-ir/laravel-easyblade": "^0.5|^1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.7|^4.0|^5.0|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EasyPanel\\EasyPanelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "EasyPanel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Reza Amini",
+                    "email": "rezaaminiroyal@gmail.com"
+                }
+            ],
+            "description": "An admin panel based on livewire",
+            "support": {
+                "issues": "https://github.com/rezaamini-ir/laravel-easypanel/issues",
+                "source": "https://github.com/rezaamini-ir/laravel-easypanel/tree/2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://zarinp.al/rezaamini",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/rezaamini-ir",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-01-29T09:13:12+00:00"
         },
         {
             "name": "symfony/console",
