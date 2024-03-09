@@ -33,3 +33,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/register', [ChatController::class, 'register']);
 Route::post('/login', [ChatController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [ChatController::class, 'logout']);

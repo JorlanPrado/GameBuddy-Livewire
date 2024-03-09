@@ -51,51 +51,51 @@ class ChatController extends Controller
 
 
     public function deleteConversation($conversationId)
-{
-    $userId = auth()->id();
-    $conversation = Conversation::find($conversationId);
+    {
+        $userId = auth()->id();
+        $conversation = Conversation::find($conversationId);
 
-    // Check if the conversation exists
-    if (!$conversation) {
-        return response()->json(['message' => 'Conversation not found'], 404);
-    }
-
-    // Check if the authenticated user is part of the conversation
-    if ($conversation->sender_id !== $userId && $conversation->receiver_id !== $userId) {
-        return response()->json(['message' => 'You are not authorized to delete this conversation'], 403);
-    }
-
-    // Update messages deletion status
-    $conversation->messages()->each(function ($message) use ($userId) {
-        if ($message->sender_id === $userId) {
-            $message->update(['sender_deleted_at' => now()]);
-        } elseif ($message->receiver_id === $userId) {
-            $message->update(['receiver_deleted_at' => now()]);
+        // Check if the conversation exists
+        if (!$conversation) {
+            return response()->json(['message' => 'Conversation not found'], 404);
         }
-    });
 
-    // Check if both sender and receiver have deleted messages
-    $receiverAlsoDeleted = $conversation->messages()
-        ->where(function ($query) use ($userId) {
-            $query->where('sender_id', $userId)
-                ->orWhere('receiver_id', $userId);
-        })->where(function ($query) use ($userId) {
-            $query->whereNull('sender_deleted_at')
-                ->orWhereNull('receiver_deleted_at');
-        })->doesntExist();
+        // Check if the authenticated user is part of the conversation
+        if ($conversation->sender_id !== $userId && $conversation->receiver_id !== $userId) {
+            return response()->json(['message' => 'You are not authorized to delete this conversation'], 403);
+        }
 
-    // If both sender and receiver deleted messages, delete the conversation
-    if ($receiverAlsoDeleted) {
-        $conversation->forceDelete();
+        // Update messages deletion status
+        $conversation->messages()->each(function ($message) use ($userId) {
+            if ($message->sender_id === $userId) {
+                $message->update(['sender_deleted_at' => now()]);
+            } elseif ($message->receiver_id === $userId) {
+                $message->update(['receiver_deleted_at' => now()]);
+            }
+        });
+
+        // Check if both sender and receiver have deleted messages
+        $receiverAlsoDeleted = $conversation->messages()
+            ->where(function ($query) use ($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId);
+            })->where(function ($query) use ($userId) {
+                $query->whereNull('sender_deleted_at')
+                    ->orWhereNull('receiver_deleted_at');
+            })->doesntExist();
+
+        // If both sender and receiver deleted messages, delete the conversation
+        if ($receiverAlsoDeleted) {
+            $conversation->forceDelete();
+        }
+
+        return response()->json(['message' => 'Conversation deleted successfully']);
     }
-
-    return response()->json(['message' => 'Conversation deleted successfully']);
-}
 
     public function getConversation($conversationId)
     {
         $authenticatedUserId = auth()->id();
-      
+
         // Check if the authenticated user exists
         if (!$authenticatedUserId) {
             return response()->json(['error' => 'Unauthenticated'], 401);
@@ -124,7 +124,7 @@ class ChatController extends Controller
     public function sendMessage(Request $request, $userId)
     {
         $authenticatedUserId = auth()->id();
-      
+
         // Check if the authenticated user exists
         if (!$authenticatedUserId) {
             return response()->json(['error' => 'Unauthenticated'], 401);
@@ -144,12 +144,12 @@ class ChatController extends Controller
             $query->where('sender_id', $userId)
                 ->where('receiver_id', $authenticatedUserId);
         })->first();
-        
+
         if ($existingConversation) {
             // Conversation already exists, return conversation details
             return response()->json(['conversation_id' => $existingConversation->id], 200);
         }
-  
+
         // Create new conversation
         $createdConversation = Conversation::create([
             'sender_id' => $authenticatedUserId,
@@ -163,9 +163,11 @@ class ChatController extends Controller
     public function register(Request $request)
     {
         $rules = array(
-            "name" => "required|min:5|max:15",
+            "name" => "required|min:5|max:15|unique:users,name",
             "email" => "required|email|unique:users,email",
-            "password" => "required|min:6|max:20"
+            "password" => "required|min:6|max:20",
+            "gender" => "required|in:Male,Female,Other",
+            "age" => "required|integer|min:1|max:120"
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -177,6 +179,9 @@ class ChatController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
+            $user->gender = $request->gender;
+            $user->age = $request->age;
+
             $result = $user->save();
 
             if ($result) {
@@ -190,15 +195,26 @@ class ChatController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-    
+
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('AuthToken')->plainTextToken;
-    
+
             return response()->json(['user' => $user, 'token' => $token], 200);
         }
-    
+
         return response()->json(['message' => 'Unauthorized'], 401);
     }
 
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+            return response()->json(['message' => 'Logout successful'], 200);
+        }
+
+        return response()->json(['message' => 'User not authenticated'], 401);
+    }
 }
