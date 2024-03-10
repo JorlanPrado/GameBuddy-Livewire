@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', 'max:20', Rules\Password::defaults()],
             'termsCheckbox' => 'required|accepted',
             'gender' => ['required', 'string', 'in:male,female,other'],
-            'age' => 'required|integer|min:18|max:40',
+            'age' => 'required|integer|min:18|max:99',
         ]);
 
         $user = User::create([
