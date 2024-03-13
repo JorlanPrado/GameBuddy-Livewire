@@ -15,7 +15,7 @@ class InterestsTableSeeder extends Seeder
         $interests = [
             'League of Legends',
             'Valorant',
-            'Candy Crush',
+            'Genshin Impact',
             'Mobile Legends',
             'Call of Duty',
         ];
