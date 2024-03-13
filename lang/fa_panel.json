@@ -82,5 +82,14 @@
     "Users": "Users",
     "Is_banned": "Is_banned",
     "Gender": "Gender",
-    "Age": "Age"
+    "Age": "Age",
+    "Body": "Body",
+    "Read_at": "Read_at",
+    "Receiver_deleted_at": "Receiver_deleted_at",
+    "Sender_deleted_at": "Sender_deleted_at",
+    "Message": "Message",
+    "Messages": "Messages",
+    "Reason": "Reason",
+    "Report": "Report",
+    "Reports": "Reports"
 }

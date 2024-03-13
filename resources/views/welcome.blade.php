@@ -529,16 +529,7 @@
     <!-- Footer -->
     <footer class="footer mt-auto">
         <div class="container text-center">
-
-
-            <div class="social-icons p-2">
-                <h2>Contact Us</h2>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gamebuddy164@gmail.com"><img
-                        class="footer-img px-2" src="img/gmail.png" alt="gmail"></a>
-            </div>
-
             <p>&copy; 2024 MITA. All rights reserved.</p>
-
         </div>
     </footer>
 

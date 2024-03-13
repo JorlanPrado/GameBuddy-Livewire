@@ -2,22 +2,22 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header p-0">
-                <h3 class="card-title">{{ __('ListTitle', ['name' => __(\Illuminate\Support\Str::plural('User')) ]) }}</h3>
+                <h3 class="card-title">{{ __('ListTitle', ['name' => __(\Illuminate\Support\Str::plural('Report')) ]) }}</h3>
 
                 <div class="px-2 mt-4">
 
                     <ul class="breadcrumb mt-3 py-3 px-4 rounded">
                         <li class="breadcrumb-item"><a href="@route(getRouteName().'.home')" class="text-decoration-none">{{ __('Dashboard') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __(\Illuminate\Support\Str::plural('User')) }}</li>
+                        <li class="breadcrumb-item active">{{ __(\Illuminate\Support\Str::plural('Report')) }}</li>
                     </ul>
 
                     <div class="row justify-content-between mt-4 mb-4">
-                        @if(getCrudConfig('User')->create && hasPermission(getRouteName().'.user.create', 0, 0))
+                        @if(getCrudConfig('Report')->create && hasPermission(getRouteName().'.report.create', 0, 0))
                         <div class="col-md-4 right-0">
-                            <a href="@route(getRouteName().'.user.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('User') ]) }}</a>
+                            <a href="@route(getRouteName().'.report.create')" class="btn btn-success">{{ __('CreateTitle', ['name' => __('Report') ]) }}</a>
                         </div>
                         @endif
-                        @if(getCrudConfig('User')->searchable())
+                        @if(getCrudConfig('Report')->searchable())
                         <div class="col-md-4">
                             <div class="input-group">
                                 <input type="text" class="form-control" @if(config('easy_panel.lazy_mode')) wire:model.lazy="search" @else wire:model="search" @endif placeholder="{{ __('Search') }}" value="{{ request('search') }}">
@@ -39,25 +39,22 @@
                     <thead>
                         <tr>
                             <th class="nameSS" scope="col" style='cursor: pointer' wire:click="sort('name')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'name') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'name') fa-sort-amount-up ml-2 @endif'></i> {{ __('Name') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('email')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'email') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'email') fa-sort-amount-up ml-2 @endif'></i> {{ __('Email') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('password')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'password') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'password') fa-sort-amount-up ml-2 @endif'></i> {{ __('Password') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('isAdmin')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'isAdmin') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'isAdmin') fa-sort-amount-up ml-2 @endif'></i> {{ __('IsAdmin') }} </th>
-                            <th scope="col" style='cursor: pointer' wire:click="sort('is_banned')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'is_banned') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'is_banned') fa-sort-amount-up ml-2 @endif'></i> {{ __('Is_banned') }} </th>
+                            <th scope="col" style='cursor: pointer' wire:click="sort('reason')"> <i class='fa @if($sortType == 'desc' and $sortColumn == 'reason') fa-sort-amount-down ml-2 @elseif($sortType == 'asc' and $sortColumn == 'reason') fa-sort-amount-up ml-2 @endif'></i> {{ __('Reason') }} </th>
                             
-                            @if(getCrudConfig('User')->Ban or getCrudConfig('User')->update or getCrudConfig('User')->Unban)
-                                <th  class="baNigga" scope="col">{{ __('Action') }}</th>
+                            @if(getCrudConfig('Report')->delete or getCrudConfig('Report')->update)
+                                <th class="baNigga" scope="col">{{ __('Action') }}</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)
-                            @livewire('admin.user.single', [$user], key($user->id))
+                        @foreach($reports as $report)
+                            @livewire('admin.report.single', [$report], key($report->id))
                         @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="m-auto pt-3 pr-3">
-                {{ $users->appends(request()->query())->links() }}
+                {{ $reports->appends(request()->query())->links() }}
             </div>
 
             <div wire:loading wire:target="nextPage,gotoPage,previousPage" class="loader-page"></div>

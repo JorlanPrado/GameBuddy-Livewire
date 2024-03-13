@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -159,62 +160,4 @@ class ChatController extends Controller
         return response()->json(['conversation_id' => $createdConversation->id], 201);
     }
 
-
-    public function register(Request $request)
-    {
-        $rules = array(
-            "name" => "required|min:5|max:15|unique:users,name",
-            "email" => "required|email|unique:users,email",
-            "password" => "required|min:6|max:20",
-            "gender" => "required|in:Male,Female,Other",
-            "age" => "required|integer|min:1|max:120"
-        );
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        } else {
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->gender = $request->gender;
-            $user->age = $request->age;
-
-            $result = $user->save();
-
-            if ($result) {
-                return response()->json(["Result" => "New user has been registered"], 201);
-            } else {
-                return response()->json(["Result" => "Failed to register user"], 500);
-            }
-        }
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('AuthToken')->plainTextToken;
-
-            return response()->json(['user' => $user, 'token' => $token], 200);
-        }
-
-        return response()->json(['message' => 'Unauthorized'], 401);
-    }
-
-    public function logout(Request $request)
-    {
-        $user = Auth::user();
-
-        if ($user) {
-            $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
-            return response()->json(['message' => 'Logout successful'], 200);
-        }
-
-        return response()->json(['message' => 'User not authenticated'], 401);
-    }
 }

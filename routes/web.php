@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\interestController;
+use App\Http\Controllers\ReportController;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\Index;
 use App\Http\Livewire\Users;
@@ -66,3 +67,5 @@ Route::get('/registration-count', function () {
 
     return response()->json(['registrationCount' => $registrationCount]);
 });
+
+Route::post('/report', [ReportController::class, 'storeReport'])->name('report.submit');

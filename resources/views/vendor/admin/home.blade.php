@@ -1,5 +1,5 @@
 @component('admin::layouts.app')
-<div class="w-50 text-center d-flex flex-column justify-content-center mx-auto" style="border-radius: 10px;background: #fccb90; background: -webkit-linear-gradient(to right, #4158D0, #C850C0); background: linear-gradient(to right, #4158D0, #C850C0); color: white; height: 100px;">
+<div class="containerR">
     <h2 class="font-weight-bold" style="padding-top:10px;">Total Users</h2>
     <h2 class="font-weight-bold p-16">{{ \App\Models\User::count() }}</h2>
 </div>
@@ -49,7 +49,8 @@
                     fill: true,
                     borderColor: '#C850C0',
                     borderWidth: 5,
-                    tension: 0.1
+                    tension: 0.1,
+                    marginTop:20
                 }]
             },
             options: {

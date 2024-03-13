@@ -2,7 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ChatController;
+use App\Http\Controllers\API\ReportController;
+use App\Http\Controllers\API\InterestController;
+use App\Http\Controllers\API\MatchingController;
 use App\Http\Livewire\Chat\Chat;
 use App\Http\Livewire\Chat\Index;
 use App\Http\Livewire\Users;
@@ -31,6 +35,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/conversations/{conversationId}', [ChatController::class, 'deleteConversation']);
 });
 
-Route::post('/register', [ChatController::class, 'register']);
-Route::post('/login', [ChatController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [ChatController::class, 'logout']);
+
+Route::get('list',[UserController::class,'list']);
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [UserController::class, 'logout']);
+Route::put('update-interests/{userId}', [interestController::class, 'updateInterests']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/users/{userId}', [UserController::class, 'update']);
+    Route::delete('/users/{userId}', [UserController::class, 'destroy']);
+});
+
+Route::post('/submit-report', [ReportController::class, 'report']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/start-matching', [MatchingController::class, 'startMatching']);
+});

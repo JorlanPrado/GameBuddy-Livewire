@@ -3,9 +3,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <section class="section gradient-form py-3" style="width: 600px;">
-        <div class="container">
+        <div class="container-fluid">
             <div class="card rounded-3 text-black">
-                <div class="card-body p-md-5 mx-md-4">
+                <div class="card-body p-md-5 mx-md-4 mx-2">
                     <div class="text-center mb-5">
                         <img src="/img/logo.png" style="width: 100px;" alt="logo" class="mx-auto">
                     </div>
@@ -44,8 +44,6 @@
 
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div>
-                        
-                        
 
                         <!--gender-->
                         <div class="col-md-6 mb-4 d-flex flex-column">
@@ -53,19 +51,19 @@
                           
                             <div class="d-flex">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" required/>
+                                    <input class="form-check-input" type="radio" name="gender" id="maleGender" value="Male" required/>
                                      <label class="form-check-label" for="maleGender">Male</label>
                                      <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                                 </div>
                           
                               <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female" required/>
+                                <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="Female" required/>
                                 <label class="form-check-label" for="femaleGender">Female</label>
                                 <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                               </div>
                           
                               <div class="form-check form-check-inline ">
-                                <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" required/>
+                                <input class="form-check-input" type="radio" name="gender" id="otherGender" value="Other" required/>
                                 <label class="form-check-label" for="otherGender">Other</label>
                                 <x-input-error :messages="$errors->get('gender')" class="mt-2" />
                                 
@@ -78,7 +76,7 @@
                         <div class="form-outline mb-4">
                             <h6 class="mb-2 pb-1">Age:</h6>
                             <div class="form-outline" data-mdb-input-init>
-                                <input type="number" id="age" name="age" class="form-control" min="0" max="99" pattern="[0-9]{1,2}" required/>
+                                <input type="number" style="border-radius: 10px;" id="age" name="age" class="form-control" min="18" max="40" pattern="[0-9]{1,2}" required/>
                                 <label class="form-label" for="age"></label>
                                 <x-input-error :messages="$errors->get('age')" class="mt-2" />
                             </div>
@@ -183,8 +181,7 @@
                                             <br>
                                             <li>
                                                 <strong style="font-weight: bold">Personal Information:</strong>
-                                                GameBuddy may collect personal information, such as name, age, and
-                                                location,
+                                                GameBuddy may collect personal information, such as email, and age
                                                 to provide the app's services. This information is handled with utmost
                                                 confidentiality and is not shared with third
                                                 parties without user consent.
@@ -196,14 +193,6 @@
                                                 However,
                                                 users should be aware of the inherent risks of online communication and
                                                 take necessary precautions.
-                                            </li>
-                                            <br>
-                                            <li>
-                                                <strong style="font-weight: bold">Cookies and Analytics:</strong>
-                                                GameBuddy may use cookies and analytics tools to enhance user experience
-                                                and
-                                                gather insights for app improvement. Users can manage cookie preferences
-                                                in their settings.
                                             </li>
                                             <br>
                                             <li>
@@ -235,56 +224,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Name -->
-    {{-- <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div> --}}
-
-    <!-- Email Address -->
-    {{-- <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div> --}}
-
-    <!-- Password -->
-    {{-- <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div> --}}
-
-    <!-- Confirm Password -->
-    {{-- <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div> --}}
-
-    {{-- <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div> --}}
 </x-guest-layout>

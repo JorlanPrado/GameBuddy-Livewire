@@ -14,9 +14,19 @@ class Users extends Component
 
     public function startMatching()
     {
+        // Get the interests of the authenticated user
+        $currentUserInterests = auth()->user()->interests->pluck('id')->toArray();
+
+        // Fetch a random user with at least one common interest
+        $this->randomUser = User::where('id', '!=', auth()->id())
+            ->where('isAdmin', false)
+            ->whereHas('interests', function ($query) use ($currentUserInterests) {
+                $query->whereIn('interest_id', $currentUserInterests);
+            })
+            ->inRandomOrder()
+            ->first();
+
         $this->showUser = true;
-        // Fetch a random user
-        $this->randomUser = User::where('id', '!=', auth()->id())->where('isAdmin', false)->inRandomOrder()->first();
     }
 
     public function message($userId)
@@ -57,7 +67,7 @@ class Users extends Component
         $users = User::where('id', '!=', auth()->id())->where('isAdmin', false)->get();
 
         // If the "Start Matching" button is clicked, show the random user, otherwise show all users
-        $users = $this->showUser ? collect([$this->randomUser]) : $users;
+        // $users = $this->showUser ? collect([$this->randomUser]) : $users;
 
         return view('livewire.users', [
             'users' => $users

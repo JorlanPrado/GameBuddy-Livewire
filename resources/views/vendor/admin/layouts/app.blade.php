@@ -49,7 +49,7 @@
                 <!-- Logo -->
                 <div class="navbar-brand">
                     <a href="@route(getRouteName().'.home')">
-                        <span class="logo-text">{{ __('Admin') }}</span>
+                        <span class="logo-text">{{ __('Admin Panel') }}</span>
                     </a>
 
                     <div class="container-checkbox">
@@ -83,7 +83,8 @@
                     <li class="nav-item d-none d-md-block">
                         <a class="nav-link" href="javascript:void(0)">
                             <div class="customize-input">
-                                <select id="langChanger" class="form-control bg-white custom-shadow border-0 h-25" style="border-radius: 6px">
+                            <select id="langChanger" class="form-control custom-shadow border-0 h-25" style="border-radius: 20px; background: linear-gradient( to right, #8971ea, #7f72ea, #7574ea, #6a75e9, #5f76e8 ); color:rgb(226, 226, 226); padding:10px;">
+
                                     @foreach(\EasyPanel\Support\Contract\LangManager::getLanguages() as $key => $value)
                                         <option value="{{ $key }}" {{ \Illuminate\Support\Facades\App::getLocale() === $key ? 'selected' : '' }}>{{ $value }}</option>
                                     @endforeach
@@ -138,7 +139,7 @@
         <!-- End Container fluid  -->
 
         <!-- footer -->
-        <footer class="footer text-center text-muted">Adminmart Template, <a href="https://github.com/rezaamini-ir/laravel-easypanel">EasyPanel</a> Package.</footer>
+        <!-- <footer class="footer text-center text-muted">Adminmart Template, <a href="https://github.com/rezaamini-ir/laravel-easypanel">EasyPanel</a> Package.</footer> -->
         <!-- End footer -->
     </div>
 </div>
